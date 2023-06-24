@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gut/hook_script.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "GutTest",
 "language": "GDScript",
 "path": "res://addons/gut/test.gd"
@@ -26,7 +26,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="godot-project-template"
+config/name="music-inc"
 run/main_scene="res://src/HelloWorld.tscn"
 config/icon="res://icon.png"
 

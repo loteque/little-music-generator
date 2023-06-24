@@ -1,18 +1,23 @@
-<table align=center border="0">
+<table align=right border="0">
 <tr>
 <th>
     
-![icon](https://github.com/loteque/godot-project-template/assets/69282314/9ff1f807-468a-476b-9c54-dd19b0f15aa0) 
+<img src='https://github.com/loteque/godot-project-template/assets/69282314/9ff1f807-468a-476b-9c54-dd19b0f15aa0' widtth=32 height=32 /> 
     
 </th>
-<th> 
+<th align=left> 
 
-# godot-project-template
-Automate Project Builds and Deployment!
+**godot-project-template**
 
 </th>
 </tr>
-</table>
+<tr>
+<th>
+</th>
+<th align=left>
+    
+<details>
+<summary>Template Usage</summary>
 
 ## Features:
 * **GitHub pages auto-deploy**
@@ -150,3 +155,9 @@ Godot Unit Tests (GUT) is configured by default to run on pull requests to main.
 ## _Directory structure and best practices_
 * the project/asset directory is where you keep all your game art, sound, etc... It can be tracked by git-lfs
 * the project/src directory is where you keep the source-code. It should not be tracked by git-lfs.
+
+</details>
+</th>     
+</tr>
+</table>
+

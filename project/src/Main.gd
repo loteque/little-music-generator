@@ -13,7 +13,6 @@ var a
 var b
 
 var count_menu_index: int = 0
-var count_beat_sample: Array
 
 func _ready():
 	c = count.get_children()
@@ -36,10 +35,14 @@ func update_index_by_1(i):
 func reset_index():
 	return 0
 
-func _on_Main_ready():
-	var audio_samples = audio.get_children()
-	var beats = board.get_node("Count").get_children()
-	
-	for beat in beats:
+func populate_samples(beat_menus, audio_samples):	
+	for beat in beat_menus:
+		beat.get_popup().clear()
 		for sample in audio_samples:
-			beat.get_popup().add_item(sample.name)
+			if sample.is_enabled():
+				beat.get_popup().add_item(sample.name)
+
+func _on_Beat_about_to_show():
+	var samples = audio.get_children()
+	var beats = board.get_node("Count").get_children()
+	populate_samples(beats, samples)

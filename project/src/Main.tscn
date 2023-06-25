@@ -60,6 +60,7 @@ text = "pulse"
 sample_name = "Bass Hit"
 description = "Bass Drum Hit"
 sfxr_node = NodePath("BassHit")
+enabled = true
 
 [node name="BassHit" type="AudioStreamPlayer" parent="Audio/BassHit"]
 stream = SubResource( 1 )
@@ -161,4 +162,5 @@ high_pass_filter/cutoff_frequency = 0.0
 high_pass_filter/cutoff_sweep = 0.0
 
 [connection signal="ready" from="." to="." method="_on_Main_ready"]
+[connection signal="about_to_show" from="UI/Board/Count/Beat" to="." method="_on_Beat_about_to_show"]
 [connection signal="pressed" from="UI/Board/Pulse" to="." method="_on_Button_pressed"]

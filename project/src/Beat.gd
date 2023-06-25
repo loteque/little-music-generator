@@ -7,6 +7,9 @@ func _ready():
 	connect_menu_item_signals()
 
 func connect_menu_item_signals():
+	if get_popup().is_connected("id_pressed", self, "_on_id_pressed"):
+		return
+	
 	var id_pressed_error = get_popup().connect("id_pressed", self, "_on_id_pressed")
 	if id_pressed_error:
 		print(id_pressed_error)

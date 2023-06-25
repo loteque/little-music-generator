@@ -14,3 +14,7 @@ func connect_menu_item_signals():
 func _on_id_pressed(id):
 	selection = get_popup().get_item_text(id)
 	text = selection
+
+
+func _on_Beat_about_to_show():
+	connect_menu_item_signals()

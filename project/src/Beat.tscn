@@ -10,3 +10,5 @@ button_mask = 2
 text = "Beat"
 flat = false
 script = ExtResource( 1 )
+
+[connection signal="about_to_show" from="." to="." method="_on_Beat_about_to_show"]

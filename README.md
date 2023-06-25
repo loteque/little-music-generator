@@ -165,6 +165,8 @@ Godot Unit Tests (GUT) is configured by default to run on pull requests to main.
 
 A Musical Incremental Game.
 
+**[PLAY IT IN YOUR BROWSER!](https://loteque.github.io/music-inc/)** 
+
 ## Contributing:
 
 Fork this project. Follow the instructions in [Template Usage](https://github.com/<your-user-name>/music-inc#godot-project-template). Make your changes. Push your changes to your repository and make a pull request.

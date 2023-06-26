@@ -2,11 +2,11 @@ extends VBoxContainer
 
 export (NodePath) var audio_node
 export (NodePath) var count_node
-export (NodePath) var board_node
+export (NodePath) var lane_manager_node
 
 onready var count: Node =  get_node(count_node)
 onready var audio: Node = get_node(audio_node)
-onready var board: Node = get_node(board_node)
+onready var lane_manager: Node = get_node(lane_manager_node)
 
 var beat_scene = preload("res://src/Beat.tscn")
 
@@ -19,7 +19,7 @@ var count_menu_index: int = 0
 func _ready():
 	c = count.get_children()
 	a = audio.get_children()
-	b = board.get_children()
+	b = get_children()
 	populate_beats(beat_scene, count, 4)
 
 func get_beat_audio(beat_index):
@@ -64,3 +64,7 @@ func _on_Pulse_pressed():
 		count_menu_index = reset_index()
 	get_beat_audio(count_menu_index).play()
 	count_menu_index = update_index_by_1(count_menu_index)
+
+func _on_pulse_all_pressed():
+	print("pulse_all_pressed signal recieved by " + name)
+	get_child(2).emit_signal("pressed")

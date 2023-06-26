@@ -10,15 +10,21 @@ size_flags_horizontal = 3
 script = ExtResource( 1 )
 audio_node = NodePath("../../../../Audio")
 count_node = NodePath("Count")
-board_node = NodePath(".")
+
+[node name="AddBeat" type="Button" parent="."]
+margin_right = 1024.0
+margin_bottom = 20.0
+text = "+"
 
 [node name="Count" type="VBoxContainer" parent="."]
-margin_right = 1024.0
-
-[node name="Pulse" type="Button" parent="."]
-margin_top = 4.0
+margin_top = 24.0
 margin_right = 1024.0
 margin_bottom = 24.0
+
+[node name="Pulse" type="Button" parent="."]
+margin_top = 28.0
+margin_right = 1024.0
+margin_bottom = 48.0
 text = "pulse"
 
 [connection signal="pressed" from="Pulse" to="." method="_on_Pulse_pressed"]

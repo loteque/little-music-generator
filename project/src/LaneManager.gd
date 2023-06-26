@@ -18,6 +18,9 @@ func _on_PulseAll_pressed():
 
 func connect_board_signals():
 	for board in boards:
+		if is_connected("pulse_all_pressed", board, "_on_pulse_all_pressed"):
+			print("pulse_all_pressed is aready connected to " + board)
+			return
 		var connect_board_signals_err = connect("pulse_all_pressed", board, "_on_pulse_all_pressed")
 		if connect_board_signals_err:
 			print(connect_board_signals_err)

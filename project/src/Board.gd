@@ -9,7 +9,7 @@ onready var audio: Node = get_node(audio_node)
 onready var lane_manager: Node = get_node(lane_manager_node)
 
 var beat_scene = preload("res://src/Beat.tscn")
-
+var number_of_beats: int = 4
 var c
 var a
 var b
@@ -20,7 +20,7 @@ func _ready():
 	c = count.get_children()
 	a = audio.get_children()
 	b = get_children()
-	populate_beats(beat_scene, count, 4)
+	populate_beats(beat_scene, count, number_of_beats)
 
 func get_beat_audio(beat_index):
 	c = count.get_children()
@@ -36,13 +36,14 @@ func reset_index():
 func populate_beats(beat_menu, beat_count, num_beats):
 	var instance_tooltip = "richt click to select sample"
 	for i in num_beats:
-		var instance_name = "Beat" + str(i + 1)
-		var beat_instance = beat_menu.instance()
-		beat_instance.name = instance_name
-		beat_instance.text = instance_name
-		beat_instance.set_tooltip(instance_tooltip)
-		beat_instance.connect("about_to_show", self, "_on_Beat_about_to_show")
-		beat_count.add_child(beat_instance)
+		if !beat_count.get_child(i):
+			var instance_name = "Beat" + str(i + 1)
+			var beat_instance = beat_menu.instance()
+			beat_instance.name = instance_name
+			beat_instance.text = instance_name
+			beat_instance.set_tooltip(instance_tooltip)
+			beat_instance.connect("about_to_show", self, "_on_Beat_about_to_show")
+			beat_count.add_child(beat_instance)
 
 func populate_samples(beat_menus, audio_samples):	
 	for beat in beat_menus:
@@ -68,3 +69,7 @@ func _on_Pulse_pressed():
 func _on_pulse_all_pressed():
 	print("pulse_all_pressed signal recieved by " + name)
 	get_child(2).emit_signal("pressed")
+
+func _on_AddBeat_pressed():
+	number_of_beats += 1
+	populate_beats(beat_scene, count, number_of_beats)

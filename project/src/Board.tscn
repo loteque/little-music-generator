@@ -25,6 +25,7 @@ margin_bottom = 24.0
 margin_top = 28.0
 margin_right = 1024.0
 margin_bottom = 48.0
-text = "pulse"
+text = "Pulse"
 
+[connection signal="pressed" from="AddBeat" to="." method="_on_AddBeat_pressed"]
 [connection signal="pressed" from="Pulse" to="." method="_on_Pulse_pressed"]

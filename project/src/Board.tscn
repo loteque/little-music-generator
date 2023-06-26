@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Board.gd" type="Script" id=1]
+
+[node name="Board" type="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 24.0
+grow_vertical = 0
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+audio_node = NodePath("../../../../Audio")
+count_node = NodePath("Count")
+board_node = NodePath(".")
+
+[node name="Count" type="VBoxContainer" parent="."]
+margin_right = 1024.0
+
+[node name="Pulse" type="Button" parent="."]
+margin_top = 4.0
+margin_right = 1024.0
+margin_bottom = 24.0
+text = "pulse"
+
+[connection signal="pressed" from="Pulse" to="." method="_on_Pulse_pressed"]

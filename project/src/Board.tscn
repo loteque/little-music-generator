@@ -3,10 +3,13 @@
 [ext_resource path="res://src/Board.gd" type="Script" id=1]
 
 [node name="Board" type="VBoxContainer"]
-margin_right = 1024.0
-margin_bottom = 24.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -48.0
 grow_vertical = 0
 size_flags_horizontal = 3
+alignment = 2
 script = ExtResource( 1 )
 count_node = NodePath("Count")
 

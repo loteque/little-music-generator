@@ -14,52 +14,57 @@ script = ExtResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="LaneManager" type="VBoxContainer" parent="UI"]
-anchor_top = 1.0
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -48.0
+
+[node name="LaneManager" type="VBoxContainer" parent="UI/HBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
 grow_vertical = 0
+size_flags_horizontal = 3
+alignment = 2
 script = ExtResource( 5 )
 lanes_node = NodePath("Lanes")
 boards_node = NodePath("Lanes/Boards")
 
-[node name="Lanes" type="HBoxContainer" parent="UI/LaneManager"]
+[node name="Lanes" type="HBoxContainer" parent="UI/HBoxContainer/LaneManager"]
+margin_top = 528.0
 margin_right = 1024.0
-margin_bottom = 48.0
+margin_bottom = 576.0
 grow_vertical = 0
 
-[node name="Boards" type="HBoxContainer" parent="UI/LaneManager/Lanes"]
+[node name="Boards" type="HBoxContainer" parent="UI/HBoxContainer/LaneManager/Lanes"]
 margin_right = 1000.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 
-[node name="Board" parent="UI/LaneManager/Lanes/Boards" instance=ExtResource( 4 )]
+[node name="Board" parent="UI/HBoxContainer/LaneManager/Lanes/Boards" instance=ExtResource( 4 )]
 margin_right = 1000.0
 margin_bottom = 48.0
 
-[node name="AddBeat" parent="UI/LaneManager/Lanes/Boards/Board" index="0"]
+[node name="AddBeat" parent="UI/HBoxContainer/LaneManager/Lanes/Boards/Board" index="0"]
 margin_right = 1000.0
 
-[node name="Count" parent="UI/LaneManager/Lanes/Boards/Board" index="1"]
+[node name="Count" parent="UI/HBoxContainer/LaneManager/Lanes/Boards/Board" index="1"]
 margin_right = 1000.0
 
-[node name="Pulse" parent="UI/LaneManager/Lanes/Boards/Board" index="2"]
+[node name="Pulse" parent="UI/HBoxContainer/LaneManager/Lanes/Boards/Board" index="2"]
 margin_right = 1000.0
 
-[node name="AddLane" type="Button" parent="UI/LaneManager/Lanes"]
+[node name="AddLane" type="Button" parent="UI/HBoxContainer/LaneManager/Lanes"]
 margin_left = 1004.0
 margin_right = 1024.0
 margin_bottom = 48.0
 text = "+"
 
-[node name="PulseAll" type="Button" parent="UI/LaneManager"]
-margin_top = 52.0
+[node name="PulseAll" type="Button" parent="UI/HBoxContainer/LaneManager"]
+margin_top = 580.0
 margin_right = 1024.0
-margin_bottom = 72.0
+margin_bottom = 600.0
 text = "Pulse All"
 
-[connection signal="pressed" from="UI/LaneManager/Lanes/AddLane" to="UI/LaneManager" method="_on_AddLane_pressed"]
-[connection signal="pressed" from="UI/LaneManager/PulseAll" to="UI/LaneManager" method="_on_PulseAll_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/LaneManager/Lanes/AddLane" to="UI/HBoxContainer/LaneManager" method="_on_AddLane_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/LaneManager/PulseAll" to="UI/HBoxContainer/LaneManager" method="_on_PulseAll_pressed"]
 
-[editable path="UI/LaneManager/Lanes/Boards/Board"]
+[editable path="UI/HBoxContainer/LaneManager/Lanes/Boards/Board"]

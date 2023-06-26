@@ -1,8 +1,10 @@
 extends VBoxContainer
 
 export (NodePath) var count_node
+export (NodePath) var pulse_button_node
 
 onready var count: Node =  get_node(count_node)
+onready var pulse_button: Node = get_node(pulse_button_node)
 onready var audio: Node = get_node("/root/Main/Audio")
 onready var lane_manager: Node = get_node("/root/Main/UI/LaneManager")
 
@@ -63,7 +65,7 @@ func _on_Pulse_pressed():
 	count_menu_index = update_index_by_1(count_menu_index)
 
 func _on_pulse_all_pressed():
-	get_child(2).emit_signal("pressed")
+	pulse_button.emit_signal("pressed")
 
 func _on_AddBeat_pressed():
 	number_of_beats += 1

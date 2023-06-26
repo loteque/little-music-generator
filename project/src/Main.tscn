@@ -62,7 +62,7 @@ margin_bottom = 600.0
 margin_right = 72.0
 margin_bottom = 38.0
 
-[node name="CheckBox" type="CheckBox" parent="UI/HBoxContainer/LaneManager/PulseAllContainer/PanelContainer"]
+[node name="IsAuto" type="CheckBox" parent="UI/HBoxContainer/LaneManager/PulseAllContainer/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 65.0
@@ -75,6 +75,18 @@ margin_right = 1024.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
 text = "Pulse All"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI"]
+anchor_right = 1.0
+margin_bottom = 17.0
+
+[node name="Label" type="Label" parent="UI/NinePatchRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 14.0
+text = "Score: 0"
 
 [connection signal="pressed" from="UI/HBoxContainer/LaneManager/Lanes/AddLane" to="UI/HBoxContainer/LaneManager" method="_on_AddLane_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/LaneManager/PulseAllContainer/PulseAll" to="UI/HBoxContainer/LaneManager" method="_on_PulseAll_pressed"]

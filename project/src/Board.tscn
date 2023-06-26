@@ -12,7 +12,7 @@ size_flags_horizontal = 3
 alignment = 2
 script = ExtResource( 1 )
 count_node = NodePath("Count")
-pulse_button_node = NodePath("HBoxContainer/Pulse")
+pulse_button_node = NodePath("PulseContainer/Pulse")
 
 [node name="AddBeat" type="Button" parent="."]
 margin_right = 1024.0
@@ -24,23 +24,23 @@ margin_top = 24.0
 margin_right = 1024.0
 margin_bottom = 24.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="PulseContainer" type="HBoxContainer" parent="."]
 margin_top = 28.0
 margin_right = 1024.0
 margin_bottom = 66.0
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+[node name="AutoPAnel" type="PanelContainer" parent="PulseContainer"]
 margin_right = 72.0
 margin_bottom = 38.0
 
-[node name="CheckBox" type="CheckBox" parent="HBoxContainer/PanelContainer"]
+[node name="IsAuto" type="CheckBox" parent="PulseContainer/AutoPAnel"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 65.0
 margin_bottom = 31.0
 text = "Auto"
 
-[node name="Pulse" type="Button" parent="HBoxContainer"]
+[node name="Pulse" type="Button" parent="PulseContainer"]
 margin_left = 76.0
 margin_right = 1024.0
 margin_bottom = 38.0
@@ -48,4 +48,4 @@ size_flags_horizontal = 3
 text = "Pulse"
 
 [connection signal="pressed" from="AddBeat" to="." method="_on_AddBeat_pressed"]
-[connection signal="pressed" from="HBoxContainer/Pulse" to="." method="_on_Pulse_pressed"]
+[connection signal="pressed" from="PulseContainer/Pulse" to="." method="_on_Pulse_pressed"]

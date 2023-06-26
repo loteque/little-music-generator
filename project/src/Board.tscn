@@ -17,6 +17,9 @@ pulse_button_node = NodePath("PulseContainer/Pulse")
 [node name="AddBeat" type="Button" parent="."]
 margin_right = 1024.0
 margin_bottom = 20.0
+hint_tooltip = "Add Beat Slot 
+cost: 100  pts"
+mouse_default_cursor_shape = 2
 text = "+"
 
 [node name="Count" type="VBoxContainer" parent="."]
@@ -32,18 +35,23 @@ margin_bottom = 66.0
 [node name="AutoPAnel" type="PanelContainer" parent="PulseContainer"]
 margin_right = 72.0
 margin_bottom = 38.0
+mouse_default_cursor_shape = 2
 
 [node name="IsAuto" type="CheckBox" parent="PulseContainer/AutoPAnel"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 65.0
 margin_bottom = 31.0
+hint_tooltip = "Auto Play
+cost: 1,000,000 pts"
+mouse_default_cursor_shape = 2
 text = "Auto"
 
 [node name="Pulse" type="Button" parent="PulseContainer"]
 margin_left = 76.0
 margin_right = 1024.0
 margin_bottom = 38.0
+mouse_default_cursor_shape = 3
 size_flags_horizontal = 3
 text = "Pulse"
 

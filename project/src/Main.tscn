@@ -51,6 +51,9 @@ margin_bottom = 66.0
 margin_left = 1004.0
 margin_right = 1024.0
 margin_bottom = 66.0
+hint_tooltip = "Add Track
+cost: 500,000 pts"
+mouse_default_cursor_shape = 2
 text = "+"
 
 [node name="PulseAllContainer" type="HBoxContainer" parent="UI/HBoxContainer/LaneManager"]
@@ -61,18 +64,23 @@ margin_bottom = 600.0
 [node name="PanelContainer" type="PanelContainer" parent="UI/HBoxContainer/LaneManager/PulseAllContainer"]
 margin_right = 72.0
 margin_bottom = 38.0
+mouse_default_cursor_shape = 2
 
 [node name="IsAuto" type="CheckBox" parent="UI/HBoxContainer/LaneManager/PulseAllContainer/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 65.0
 margin_bottom = 31.0
+hint_tooltip = "Auto Play All
+Cost: 2,000,000 pts"
+mouse_default_cursor_shape = 2
 text = "Auto"
 
 [node name="PulseAll" type="Button" parent="UI/HBoxContainer/LaneManager/PulseAllContainer"]
 margin_left = 76.0
 margin_right = 1024.0
 margin_bottom = 38.0
+mouse_default_cursor_shape = 3
 size_flags_horizontal = 3
 text = "Pulse All"
 

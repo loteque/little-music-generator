@@ -15,6 +15,8 @@ var beat_scene = preload("res://src/Beat.tscn")
 var sample_data = preload("res://src/SampleData.tscn")
 var number_of_beats: int = 4
 var lane_score: int = 0
+var beat_cost: int = 100
+var auto_pulse_cost = 1000000
 var c
 var a
 var b
@@ -62,11 +64,14 @@ func populate_beats(beat_menu, beat_count, num_beats):
 			beat_count.add_child(beat_instance)
 
 func populate_samples(beat_menus, audio_samples):	
+	var i: int = 0
 	for beat in beat_menus:
 		beat.get_popup().clear()
 		for sample in audio_samples:
 			if sample.is_enabled():
 				beat.get_popup().add_item(sample.name)
+				beat.get_popup().set_item_tooltip( i, "Cost: " + str(sample.sample_cost) + "\n Value: " + str(sample.sample_value) )
+				i += 1
 
 func reset_lane_score():
 	lane_score = 0
@@ -97,9 +102,12 @@ func _on_pulse_all_pressed():
 func _on_AddBeat_pressed():
 	number_of_beats += 1
 	populate_beats(beat_scene, count, number_of_beats)
+	ui.emit_signal("beat_added", beat_cost)
 
 func _on_LaneScore_pressed():
 	ui.emit_signal("lane_score_pressed", lane_score)
 	reset_lane_score()
 	update_lane_score(0)
 	
+func _on_IsAuto_pressed():
+	ui.emit_signal("auto_pulse_added", auto_pulse_cost)

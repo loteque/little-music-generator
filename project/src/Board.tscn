@@ -66,4 +66,5 @@ text = "Pulse"
 
 [connection signal="pressed" from="LaneScore" to="." method="_on_LaneScore_pressed"]
 [connection signal="pressed" from="AddBeat" to="." method="_on_AddBeat_pressed"]
+[connection signal="pressed" from="PulseContainer/AutoPAnel/IsAuto" to="." method="_on_IsAuto_pressed"]
 [connection signal="pressed" from="PulseContainer/Pulse" to="." method="_on_Pulse_pressed"]

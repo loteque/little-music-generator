@@ -69,7 +69,7 @@ margin_right = 72.0
 margin_bottom = 38.0
 mouse_default_cursor_shape = 2
 
-[node name="IsAuto" type="CheckBox" parent="UI/Tracker/LaneManager/PulseAllContainer/PanelContainer"]
+[node name="IsAutoPulseAll" type="CheckBox" parent="UI/Tracker/LaneManager/PulseAllContainer/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 65.0
@@ -110,6 +110,12 @@ margin_right = 25.5
 text = "0"
 align = 1
 
+[connection signal="auto_pulse_added" from="UI" to="UI" method="_on_UI_auto_pulse_added"]
+[connection signal="auto_pulse_all_added" from="UI" to="UI" method="_on_UI_auto_pulse_all_added"]
+[connection signal="beat_added" from="UI" to="UI" method="_on_UI_beat_added"]
 [connection signal="lane_score_pressed" from="UI" to="UI" method="_on_UI_lane_score_pressed"]
+[connection signal="sample_selected" from="UI" to="UI" method="_on_UI_sample_selected"]
+[connection signal="track_added" from="UI" to="UI" method="_on_UI_track_added"]
 [connection signal="pressed" from="UI/Tracker/LaneManager/Lanes/AddLane" to="UI/Tracker/LaneManager" method="_on_AddLane_pressed"]
+[connection signal="pressed" from="UI/Tracker/LaneManager/PulseAllContainer/PanelContainer/IsAutoPulseAll" to="UI/Tracker/LaneManager" method="_on_IsAutoPulseAll_pressed"]
 [connection signal="pressed" from="UI/Tracker/LaneManager/PulseAllContainer/PulseAll" to="UI/Tracker/LaneManager" method="_on_PulseAll_pressed"]

@@ -6,11 +6,15 @@ export (NodePath) var boards_node
 onready var lanes: Node = get_node(lanes_node)
 onready var boards: Node = get_node(boards_node)
 onready var boards_array: Array = boards.get_children()
+onready var ui: Node = get_node("/root/Main/UI")
 
 onready var board_scene: Resource = preload("res://src/Board.tscn")
 
 signal pulse_all_pressed
 signal lane_score_updated(lane_score)
+
+var track_cost: int = 500000
+var auto_pulse_all_cost = 2000000
 
 func _ready():
 	connect_board_signals()
@@ -45,8 +49,13 @@ func connect_board_signals():
 func add_board():
 	var board_instance = board_scene.instance()
 	boards.add_child(board_instance)
+	ui.emit_signal("track_added", track_cost)
 
 func _on_AddLane_pressed():
 	add_board()
 	boards_array = boards.get_children()
 	connect_board_signals()
+
+func _on_IsAutoPulseAll_pressed():
+	print("is_auto_pressed")
+	ui.emit_signal("auto_pulse_all_added", auto_pulse_all_cost)

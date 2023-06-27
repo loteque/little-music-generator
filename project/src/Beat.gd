@@ -1,6 +1,7 @@
 extends MenuButton
 
 onready var audio: Node = get_node("/root/Main/Audio")
+onready var ui: Node = get_node("/root/Main/UI")
 
 var selection: String
 var cost: int
@@ -29,6 +30,9 @@ func _on_id_pressed(id):
 	beat_data.sample_value = sample_data.sample_value
 	beat_data.sfxr_node = sample_data.sfxr_node
 	beat_data.enabled = sample_data.enabled
+
+	#emit signal with selected sample cost
+	ui.emit_signal("sample_selected", beat_data.sample_cost)
 
 func _on_Beat_about_to_show():
 	connect_menu_item_signals()

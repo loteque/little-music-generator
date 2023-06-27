@@ -64,8 +64,8 @@ func populate_beats(beat_menu, beat_count, num_beats):
 			beat_count.add_child(beat_instance)
 
 func populate_samples(beat_menus, audio_samples):	
-	var i: int = 0
 	for beat in beat_menus:
+		var i: int = 0
 		beat.get_popup().clear()
 		for sample in audio_samples:
 			if sample.is_enabled():

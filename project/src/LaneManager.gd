@@ -22,6 +22,7 @@ var auto_pulse_all_cost = 2000000
 func _ready():
 	connect_board_signals()
 	main_timer.connect("timeout", self, "_on_main_timer_timeout")
+
 func emit_pulse_pressed_signal():
 	emit_signal("pulse_all_pressed")
 

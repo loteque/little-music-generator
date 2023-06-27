@@ -15,6 +15,7 @@ onready var main_timer: Node = get_node("/root/Main/MainTimer")
 onready var audio: Node = get_node("/root/Main/Audio")
 onready var lane_manager: Node = get_node("/root/Main/UI/Tracker/LaneManager")
 onready var ui: Node = get_node("/root/Main/UI")
+onready var score: Node = get_node("/root/Main/UI/ScoreContainer/Score")
 
 var beat_scene = preload("res://src/Beat.tscn")
 var sample_data = preload("res://src/SampleData.tscn")
@@ -74,7 +75,7 @@ func populate_samples(beat_menus, audio_samples):
 		var i: int = 0
 		beat.get_popup().clear()
 		for sample in audio_samples:
-			if sample.is_enabled():
+			if int(score.text) >= sample.sample_cost:
 				beat.get_popup().add_item(sample.name)
 				beat.get_popup().set_item_tooltip( i, "Cost: " + str(sample.sample_cost) + "\n Value: " + str(sample.sample_value) )
 				i += 1

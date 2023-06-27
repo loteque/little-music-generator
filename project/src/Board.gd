@@ -42,7 +42,7 @@ func get_beat_audio(beat_index):
 	return audio.get_node(sample_name).get_child(0)
 
 func get_beat_data(beat_index):
-	var beat_data = count.get_child(beat_index).get_child(0)
+	var beat_data = count.get_child(beat_index).get_node("SampleData")
 	return beat_data
 
 func update_index_by_1(i):
@@ -56,15 +56,20 @@ func populate_beats(beat_menu, beat_count, num_beats):
 	for i in num_beats:
 		if !beat_count.get_child(i):
 			var instance_name = "Beat" + str(i + 1)
+			var default_sample = "Silence"
+			var default_sample_value = 1
 			#construct beat interface
 			var beat_instance = beat_menu.instance()
 			beat_instance.name = instance_name
-			beat_instance.text = instance_name
+			beat_instance.text = default_sample
+			beat_instance.selection = default_sample
 			beat_instance.set_tooltip(instance_tooltip)
 			beat_instance.connect("about_to_show", self, "_on_Beat_about_to_show")
 
 			#attach sample_data to beat interface
 			var sample_data_instance = sample_data.instance()
+			sample_data_instance.sample_name = default_sample
+			sample_data_instance.sample_value = default_sample_value
 			beat_instance.add_child(sample_data_instance)
 			
 			#attach beat interface
@@ -77,7 +82,7 @@ func populate_samples(beat_menus, audio_samples):
 		for sample in audio_samples:
 			if int(score.text) >= sample.sample_cost:
 				beat.get_popup().add_item(sample.name)
-				beat.get_popup().set_item_tooltip( i, "Cost: " + str(sample.sample_cost) + "\n Value: " + str(sample.sample_value) )
+				beat.get_popup().set_item_tooltip( i, sample.name + "\n Cost: " + str(sample.sample_cost) + "\n Value: " + str(sample.sample_value) + "\n Description: " + sample.description)
 				i += 1
 
 func reset_lane_score():

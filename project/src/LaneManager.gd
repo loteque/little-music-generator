@@ -2,10 +2,13 @@ extends VBoxContainer
 
 export (NodePath) var lanes_node
 export (NodePath) var boards_node
+export (NodePath) var is_auto_pulse_all_node
 
 onready var lanes: Node = get_node(lanes_node)
 onready var boards: Node = get_node(boards_node)
+onready var is_auto_pulse_all = get_node(is_auto_pulse_all_node)
 onready var boards_array: Array = boards.get_children()
+onready var main_timer: Node = get_node("/root/Main/MainTimer")
 onready var ui: Node = get_node("/root/Main/UI")
 
 onready var board_scene: Resource = preload("res://src/Board.tscn")
@@ -18,12 +21,9 @@ var auto_pulse_all_cost = 2000000
 
 func _ready():
 	connect_board_signals()
-
+	main_timer.connect("timeout", self, "_on_main_timer_timeout")
 func emit_pulse_pressed_signal():
 	emit_signal("pulse_all_pressed")
-
-func _on_PulseAll_pressed():
-	emit_pulse_pressed_signal()
 
 func connect_signal(signal_name: String, target: Node):
 	var connect_signal_err
@@ -56,6 +56,13 @@ func _on_AddLane_pressed():
 	boards_array = boards.get_children()
 	connect_board_signals()
 
-func _on_IsAutoPulseAll_pressed():
-	print("is_auto_pressed")
-	ui.emit_signal("auto_pulse_all_added", auto_pulse_all_cost)
+func _on_PulseAll_pressed():
+	emit_pulse_pressed_signal()
+
+func _on_main_timer_timeout():
+	if is_auto_pulse_all.pressed:
+		emit_pulse_pressed_signal()
+
+func _on_IsAutoPulseAll_toggled(button_pressed:bool):
+	if button_pressed:
+		ui.emit_signal("auto_pulse_all_added", auto_pulse_all_cost)

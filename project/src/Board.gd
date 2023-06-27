@@ -2,14 +2,19 @@ extends VBoxContainer
 
 export (NodePath) var count_node
 export (NodePath) var pulse_button_node
+export (NodePath) var lane_score_button_node
 
 onready var count: Node =  get_node(count_node)
 onready var pulse_button: Node = get_node(pulse_button_node)
+onready var lane_score_button: Node = get_node(lane_score_button_node)
 onready var audio: Node = get_node("/root/Main/Audio")
-onready var lane_manager: Node = get_node("/root/Main/UI/LaneManager")
+onready var lane_manager: Node = get_node("/root/Main/UI/Tracker/LaneManager")
+onready var ui: Node = get_node("/root/Main/UI")
 
 var beat_scene = preload("res://src/Beat.tscn")
+var sample_data = preload("res://src/SampleData.tscn")
 var number_of_beats: int = 4
+var lane_score: int = 0
 var c
 var a
 var b
@@ -27,6 +32,10 @@ func get_beat_audio(beat_index):
 	var sample_name = c[beat_index].selection
 	return audio.get_node(sample_name).get_child(0)
 
+func get_beat_data(beat_index):
+	var beat_data = count.get_child(beat_index).get_child(0)
+	return beat_data
+
 func update_index_by_1(i):
 	return i + 1
 
@@ -34,15 +43,22 @@ func reset_index():
 	return 0
 
 func populate_beats(beat_menu, beat_count, num_beats):
-	var instance_tooltip = "richt click to select sample"
+	var instance_tooltip = "right click to select sample"
 	for i in num_beats:
 		if !beat_count.get_child(i):
 			var instance_name = "Beat" + str(i + 1)
+			#construct beat interface
 			var beat_instance = beat_menu.instance()
 			beat_instance.name = instance_name
 			beat_instance.text = instance_name
 			beat_instance.set_tooltip(instance_tooltip)
 			beat_instance.connect("about_to_show", self, "_on_Beat_about_to_show")
+
+			#attach sample_data to beat interface
+			var sample_data_instance = sample_data.instance()
+			beat_instance.add_child(sample_data_instance)
+			
+			#attach beat interface
 			beat_count.add_child(beat_instance)
 
 func populate_samples(beat_menus, audio_samples):	
@@ -51,6 +67,15 @@ func populate_samples(beat_menus, audio_samples):
 		for sample in audio_samples:
 			if sample.is_enabled():
 				beat.get_popup().add_item(sample.name)
+
+func reset_lane_score():
+	lane_score = 0
+
+func update_lane_score(new_lane_score):
+	lane_score += new_lane_score
+	lane_manager.emit_signal("lane_score_updated", lane_score)
+	lane_score_button.text = "Lane Score: " + str(lane_score)
+	pass
 
 func _on_Beat_about_to_show():
 	var samples = audio.get_children()
@@ -61,7 +86,9 @@ func _on_Pulse_pressed():
 	c = count.get_children()
 	if count_menu_index == c.size():
 		count_menu_index = reset_index()
+	var beat_data = get_beat_data(count_menu_index)
 	get_beat_audio(count_menu_index).play()
+	update_lane_score(beat_data.sample_value)
 	count_menu_index = update_index_by_1(count_menu_index)
 
 func _on_pulse_all_pressed():
@@ -70,3 +97,9 @@ func _on_pulse_all_pressed():
 func _on_AddBeat_pressed():
 	number_of_beats += 1
 	populate_beats(beat_scene, count, number_of_beats)
+
+func _on_LaneScore_pressed():
+	ui.emit_signal("lane_score_pressed", lane_score)
+	reset_lane_score()
+	update_lane_score(0)
+	

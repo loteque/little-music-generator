@@ -37,3 +37,5 @@ func _on_UI_auto_pulse_added(auto_pulse_cost):
 func _on_UI_auto_pulse_all_added(auto_pulse_all_cost):
 	print("UI.gd: auto_pulse_all_added signal recieved")
 	subtract_from_score(auto_pulse_all_cost, int(score.text))
+
+

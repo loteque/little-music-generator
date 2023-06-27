@@ -1,12 +1,17 @@
 extends VBoxContainer
 
+signal auto_pulse_removed
+
 export (NodePath) var count_node
 export (NodePath) var pulse_button_node
 export (NodePath) var lane_score_button_node
+export (NodePath) var is_auto_node
 
 onready var count: Node =  get_node(count_node)
 onready var pulse_button: Node = get_node(pulse_button_node)
 onready var lane_score_button: Node = get_node(lane_score_button_node)
+onready var is_auto: Node = get_node(is_auto_node)
+onready var main_timer: Node = get_node("/root/Main/MainTimer")
 onready var audio: Node = get_node("/root/Main/Audio")
 onready var lane_manager: Node = get_node("/root/Main/UI/Tracker/LaneManager")
 onready var ui: Node = get_node("/root/Main/UI")
@@ -27,6 +32,7 @@ func _ready():
 	c = count.get_children()
 	a = audio.get_children()
 	b = get_children()
+	main_timer.connect("timeout", self, "_on_main_timer_timeout")
 	populate_beats(beat_scene, count, number_of_beats)
 
 func get_beat_audio(beat_index):
@@ -87,6 +93,9 @@ func _on_Beat_about_to_show():
 	var beats = count.get_children()
 	populate_samples(beats, samples)
 
+func play_beat():
+	pulse_button.emit_signal("pressed")
+
 func _on_Pulse_pressed():
 	c = count.get_children()
 	if count_menu_index == c.size():
@@ -108,6 +117,13 @@ func _on_LaneScore_pressed():
 	ui.emit_signal("lane_score_pressed", lane_score)
 	reset_lane_score()
 	update_lane_score(0)
-	
-func _on_IsAuto_pressed():
-	ui.emit_signal("auto_pulse_added", auto_pulse_cost)
+
+func _on_IsAuto_toggled(button_pressed:bool):
+	if button_pressed:
+		ui.emit_signal("auto_pulse_added", auto_pulse_cost)
+	else:
+		emit_signal("auto_pulse_removed")
+
+func _on_main_timer_timeout():
+	if is_auto.pressed:
+		play_beat()

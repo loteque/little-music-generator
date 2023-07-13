@@ -37,6 +37,7 @@ script = ExtResource( 5 )
 lanes_node = NodePath("Lanes")
 boards_node = NodePath("Lanes/Boards")
 is_auto_pulse_all_node = NodePath("PulseAllContainer/PanelContainer/IsAutoPulseAll")
+add_lane_button_node = NodePath("Lanes/AddLane")
 
 [node name="Lanes" type="HBoxContainer" parent="UI/Tracker/LaneManager"]
 margin_top = 468.0
@@ -66,6 +67,7 @@ cost: 500,000 pts"
 mouse_default_cursor_shape = 2
 text = "+"
 script = ExtResource( 7 )
+cost = 25000
 
 [node name="PulseAllContainer" type="HBoxContainer" parent="UI/Tracker/LaneManager"]
 margin_top = 562.0
@@ -127,6 +129,7 @@ align = 1
 [connection signal="lane_score_pressed" from="UI" to="UI" method="_on_UI_lane_score_pressed"]
 [connection signal="sample_selected" from="UI" to="UI" method="_on_UI_sample_selected"]
 [connection signal="track_added" from="UI" to="UI" method="_on_UI_track_added"]
+[connection signal="mouse_entered" from="UI/Tracker/LaneManager/Lanes/AddLane" to="UI/Tracker/LaneManager/Lanes/AddLane" method="_on_AddLane_mouse_entered"]
 [connection signal="pressed" from="UI/Tracker/LaneManager/Lanes/AddLane" to="UI/Tracker/LaneManager" method="_on_AddLane_pressed"]
 [connection signal="toggled" from="UI/Tracker/LaneManager/PulseAllContainer/PanelContainer/IsAutoPulseAll" to="UI/Tracker/LaneManager" method="_on_IsAutoPulseAll_toggled"]
 [connection signal="pressed" from="UI/Tracker/LaneManager/PulseAllContainer/PulseAll" to="UI/Tracker/LaneManager" method="_on_PulseAll_pressed"]

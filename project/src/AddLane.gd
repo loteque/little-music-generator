@@ -1,12 +1,15 @@
 extends Button
 
+export (int) var cost
 onready var main_timer: Node = get_node("/root/Main/MainTimer")
 onready var score: Node = get_node("/root/Main/UI/ScoreContainer/Score")
 
-var cost: int = 500000
-
 func _ready():
 	main_timer.connect("timeout", self, "_on_main_timer_timeout")
+
+
+func _on_AddLane_mouse_entered():
+	hint_tooltip = "Add track\n Cost: "	+ str(cost)
 
 func _on_main_timer_timeout():
 	if int(score.text) < cost:

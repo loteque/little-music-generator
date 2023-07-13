@@ -3,10 +3,12 @@ extends VBoxContainer
 export (NodePath) var lanes_node
 export (NodePath) var boards_node
 export (NodePath) var is_auto_pulse_all_node
+export (NodePath) var add_lane_button_node
 
 onready var lanes: Node = get_node(lanes_node)
 onready var boards: Node = get_node(boards_node)
-onready var is_auto_pulse_all = get_node(is_auto_pulse_all_node)
+onready var is_auto_pulse_all: Node = get_node(is_auto_pulse_all_node)
+onready var add_lane_button: Node = get_node(add_lane_button_node)
 onready var boards_array: Array = boards.get_children()
 onready var main_timer: Node = get_node("/root/Main/MainTimer")
 onready var ui: Node = get_node("/root/Main/UI")
@@ -16,7 +18,6 @@ onready var board_scene: Resource = preload("res://src/Board.tscn")
 signal pulse_all_pressed
 signal lane_score_updated(lane_score)
 
-var track_cost: int = 500000
 var auto_pulse_all_cost = 2000000
 
 func _ready():
@@ -48,6 +49,7 @@ func connect_board_signals():
 		print(connect_board_signals_err)
 
 func add_board():
+	var track_cost: int = add_lane_button.cost
 	var board_instance = board_scene.instance()
 	boards.add_child(board_instance)
 	ui.emit_signal("track_added", track_cost)

@@ -8,10 +8,10 @@
     |done|prio|ln|context|description|
     |:---:|:---:|:---:|:---|:---|
     | [ ] | 4 | 12 | `hint_tooltip` | Tooltip strings should be stored in in a resource and accessed from there. |
-- [ ] **Beat.tscn**
+- [x] **Beat.tscn**
     |done|prio|ln|context|description|
     |:---:|:---:|:---:|:---|:---|
-    | [ ] | 0 | NA | Editor: BaseButton/button_mask | should be right_click because this interaction feels most natural to a user |
+    | [x] | 0 | NA | Editor: BaseButton/button_mask | should be right_click because this interaction feels most natural to a user |
 - [ ] **Beat.gd**
     |done|prio|ln|context|description|
     |:---:|:---:|:---:|:---|:---|
@@ -53,7 +53,7 @@
 - [ ] **LaneManager.gd**
     |done|prio|ln|context|description|
     |:---:|:---:|:---:|:---|:---|
-    | [ ] | 0 | 69 | `f _on_IsAutoPulseAll_toggled` | move to IsAutoPulseAll.gd |
+    | [x] | 0 | 69 | `f _on_IsAutoPulseAll_toggled` | move to IsAutoPulseAll.gd |
     | [ ] | 0 | 65, 27 | `f _on_main_timer_timeout`, `emit_pulse_pressed_signal` | move to IsAutoPulseAll.gd |
     | [ ] | 0 | 62, 27 | `f _on_PulseAll_pressed`, `emit_pulse_pressed_signal` | move to IsAutoPulseAll.gd |
     | [ ] | 0 | 57, 51 | `f _on_AddLane_pressed`, `f add_board` | move to AddLane.gd |
@@ -74,8 +74,8 @@
     - [ ] 'Lanes' -> 'Pattern'
     - [ ] 'Tracker' -> 'PatternContainer'
 
-- [ ] **Utils.gd**
-    - [ ] `func connect_signal`
+- [x] **Utils.gd**
+    - [x] `func connect_signal`
         - arguements: 
             - node where the signal is declared
             - signal name 

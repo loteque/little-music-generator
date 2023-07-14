@@ -30,6 +30,9 @@ var b
 var count_menu_index: int = 0
 
 func _ready():
+	# Refactor: new code
+	var err = Utils.connect_signal(ui, "pulse_all_pressed", self)
+	print(err)
 	c = count.get_children()
 	a = audio.get_children()
 	b = get_children()
@@ -111,7 +114,7 @@ func _on_Pulse_pressed():
 	update_lane_score(beat_data.sample_value)
 	count_menu_index = update_index_by_1(count_menu_index)
 
-func _on_pulse_all_pressed():
+func _on_UI_pulse_all_pressed():
 	pulse_button.emit_signal("pressed")
 
 func _on_AddBeat_pressed():

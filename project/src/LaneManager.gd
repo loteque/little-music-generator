@@ -17,35 +17,35 @@ onready var board_scene: Resource = preload("res://src/Board.tscn")
 
 signal pulse_all_pressed
 signal lane_score_updated(lane_score)
-
-var auto_pulse_all_cost = 2000000
+# moved to IsAutoPulseAll.gd
+# var auto_pulse_all_cost = 2000000
 
 func _ready():
 	connect_board_signals()
-	main_timer.connect("timeout", self, "_on_main_timer_timeout")
-
+	var err = Utils.connect_signal(main_timer, "timeout", self)
+	print(err)
 func emit_pulse_pressed_signal():
 	emit_signal("pulse_all_pressed")
-
-func connect_signal(signal_name: String, target: Node):
-	var connect_signal_err
-	var callback = "_on" + signal_name
-	if is_connected(signal_name, target, callback):
-		connect_signal_err = "pulse_all_pressed is aready connected to " + str(target)
-	else:
-		connect_signal_err = connect("pulse_all_pressed", target, "_on_pulse_all_pressed")
-		if !connect_signal_err:
-			connect_signal_err = "connection successful to " + str(target)
-	return connect_signal_err
+# moved to Utils.gd
+#func connect_signal(signal_name: String, target: Node):
+#	var connect_signal_err
+#	var callback = "_on" + signal_name
+#	if is_connected(signal_name, target, callback):
+#		connect_signal_err = "pulse_all_pressed is aready connected to " + str(target)
+#	else:
+#		connect_signal_err = connect("pulse_all_pressed", target, "_on_pulse_all_pressed")
+#		if !connect_signal_err:
+#			connect_signal_err = "connection successful to " + str(target)
+#	return connect_signal_err
 
 func connect_board_signals():
 	for board in boards_array:
 		var connect_board_signals_err
 		
-		connect_board_signals_err = connect_signal("pulse_all_pressed", board)
+		connect_board_signals_err = Utils.connect_signal($".", "pulse_all_pressed", board)
 		print(connect_board_signals_err)
 		
-		connect_board_signals_err = connect_signal("lane_score_updated", board) 
+		connect_board_signals_err = Utils.connect_signal($".", "lane_score_updated", board)
 		print(connect_board_signals_err)
 
 func add_board():
@@ -61,11 +61,10 @@ func _on_AddLane_pressed():
 
 func _on_PulseAll_pressed():
 	emit_pulse_pressed_signal()
-
-func _on_main_timer_timeout():
+func _on_MainTimer_timeout():
 	if is_auto_pulse_all.pressed:
 		emit_pulse_pressed_signal()
-
-func _on_IsAutoPulseAll_toggled(button_pressed:bool):
-	if button_pressed:
-		ui.emit_signal("auto_pulse_all_added", auto_pulse_all_cost)
+# moved to IsAutoPulseAll.gd
+# func _on_IsAutoPulseAll_toggled(button_pressed:bool):
+#	if button_pressed:
+#		ui.emit_signal("auto_pulse_all_added", auto_pulse_all_cost)

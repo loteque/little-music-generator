@@ -50,13 +50,13 @@
     |:---:|:---:|:---:|:---|:---|
     | [ ] | 1 | 9 | `main_timer.connect` | use the utils connect_signal function. If the utils function still needs to be constructed see LaneManager.gd, 30: `func connect_Signal` |
     | [ ] | 1 | 12| `int(score.text)` |The score val should be comming from a comon place and should be stored as an integer so that we don't have to think about converting it from a string to an int here. The only time we care about it being a string is in the UI label. |
-- [ ] **LaneManager.gd**
+- [x] **LaneManager.gd**
     |done|prio|ln|context|description|
     |:---:|:---:|:---:|:---|:---|
     | [x] | 0 | 69 | `f _on_IsAutoPulseAll_toggled` | move to IsAutoPulseAll.gd |
     | [x] | 0 | 65, 27 | `f _on_main_timer_timeout`, `emit_pulse_pressed_signal` | move to IsAutoPulseAll.gd |
     | [x] | 0 | 62, 27 | `f _on_PulseAll_pressed`, `emit_pulse_pressed_signal` | move to IsAutoPulseAll.gd |
-    | [ ] | 0 | 57, 51 | `f _on_AddLane_pressed`, `f add_board` | move to AddLane.gd |
+    | [x] | 0 | 57, 51 | `f _on_AddLane_pressed`, `f add_board` | move to AddLane.gd |
     | [x] | 0 | 30, 41 | `f connect_signal`, `connect_board_signals` | These functions can likely be consolidated. The fucntion shoul be defined in a utils singleton. |
 - [ ] **Sample.gd, SampleData.gd**
   - [ ] These seem like they should be a class

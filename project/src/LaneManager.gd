@@ -13,7 +13,7 @@ onready var boards_array: Array = boards.get_children()
 onready var main_timer: Node = get_node("/root/Main/MainTimer")
 onready var ui: Node = get_node("/root/Main/UI")
 
-onready var board_scene: Resource = preload("res://src/Board.tscn")
+#onready var board_scene: Resource = preload("res://src/Board.tscn")
 #moved to UI.gd
 #signal pulse_all_pressed
 #signal lane_score_updated(lane_score)
@@ -36,7 +36,6 @@ onready var board_scene: Resource = preload("res://src/Board.tscn")
 #		if !connect_signal_err:
 #			connect_signal_err = "connection successful to " + str(target)
 #	return connect_signal_err
-
 # moved to board.gd
 #func connect_board_signals():
 #	for board in boards_array:
@@ -46,17 +45,16 @@ onready var board_scene: Resource = preload("res://src/Board.tscn")
 		
 		#connect_board_signals_err = Utils.connect_signal($".", "lane_score_updated", board)
 		#print(connect_board_signals_err)
-
-func add_board():
-	var track_cost: int = add_lane_button.cost
-	var board_instance = board_scene.instance()
-	boards.add_child(board_instance)
-	ui.emit_signal("track_added", track_cost)
-
-func _on_AddLane_pressed():
-	add_board()
-	boards_array = boards.get_children()
-	connect_board_signals()
+#moved to AddLane.gd
+#func add_board():
+#	var track_cost: int = add_lane_button.cost
+#	var board_instance = board_scene.instance()
+#	boards.add_child(board_instance)
+#	ui.emit_signal("track_added", track_cost)
+#func _on_AddLane_pressed():
+#	add_board()
+#	boards_array = boards.get_children()
+#	connect_board_signals()
 # moved to PulseAll.gd
 #func _on_PulseAll_pressed():
 #	emit_pulse_pressed_signal()

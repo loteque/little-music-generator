@@ -54,10 +54,10 @@
     |done|prio|ln|context|description|
     |:---:|:---:|:---:|:---|:---|
     | [x] | 0 | 69 | `f _on_IsAutoPulseAll_toggled` | move to IsAutoPulseAll.gd |
-    | [ ] | 0 | 65, 27 | `f _on_main_timer_timeout`, `emit_pulse_pressed_signal` | move to IsAutoPulseAll.gd |
-    | [ ] | 0 | 62, 27 | `f _on_PulseAll_pressed`, `emit_pulse_pressed_signal` | move to IsAutoPulseAll.gd |
+    | [x] | 0 | 65, 27 | `f _on_main_timer_timeout`, `emit_pulse_pressed_signal` | move to IsAutoPulseAll.gd |
+    | [x] | 0 | 62, 27 | `f _on_PulseAll_pressed`, `emit_pulse_pressed_signal` | move to IsAutoPulseAll.gd |
     | [ ] | 0 | 57, 51 | `f _on_AddLane_pressed`, `f add_board` | move to AddLane.gd |
-    | [ ] | 0 | 30, 41 | `f connect_signal`, `connect_board_signals` | These functions can likely be consolidated. The fucntion shoul be defined in a utils singleton. |
+    | [x] | 0 | 30, 41 | `f connect_signal`, `connect_board_signals` | These functions can likely be consolidated. The fucntion shoul be defined in a utils singleton. |
 - [ ] **Sample.gd, SampleData.gd**
   - [ ] These seem like they should be a class
 - [ ] **UI.gd**

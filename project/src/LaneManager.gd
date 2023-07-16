@@ -16,12 +16,12 @@ onready var ui: Node = get_node("/root/Main/UI")
 onready var board_scene: Resource = preload("res://src/Board.tscn")
 #moved to UI.gd
 #signal pulse_all_pressed
-signal lane_score_updated(lane_score)
+#signal lane_score_updated(lane_score)
 # moved to IsAutoPulseAll.gd
 # var auto_pulse_all_cost = 2000000
 
-func _ready():
-	connect_board_signals()
+#func _ready():
+#	connect_board_signals()
 # moved to pulseAll.gd
 # func emit_pulse_pressed_signal():
 #	emit_signal("pulse_all_pressed")
@@ -37,15 +37,15 @@ func _ready():
 #			connect_signal_err = "connection successful to " + str(target)
 #	return connect_signal_err
 
-func connect_board_signals():
-	for board in boards_array:
-		var connect_board_signals_err
-		# moved to board.gd
+# moved to board.gd
+#func connect_board_signals():
+#	for board in boards_array:
+#		var connect_board_signals_err
 		#connect_board_signals_err = Utils.connect_signal($".", "pulse_all_pressed", board)
 		#print(connect_board_signals_err)
 		
-		connect_board_signals_err = Utils.connect_signal($".", "lane_score_updated", board)
-		print(connect_board_signals_err)
+		#connect_board_signals_err = Utils.connect_signal($".", "lane_score_updated", board)
+		#print(connect_board_signals_err)
 
 func add_board():
 	var track_cost: int = add_lane_button.cost

@@ -6,9 +6,11 @@ export (NodePath) var count_node
 export (NodePath) var pulse_button_node
 export (NodePath) var lane_score_button_node
 export (NodePath) var is_auto_node
+export (NodePath) var is_auto_pulse_all_node
 
 onready var count: Node =  get_node(count_node)
 onready var pulse_button: Node = get_node(pulse_button_node)
+onready var is_auto_pulse_all: Node = get_node(is_auto_pulse_all_node)
 onready var lane_score_button: Node = get_node(lane_score_button_node)
 onready var is_auto: Node = get_node(is_auto_node)
 onready var main_timer: Node = get_node("/root/Main/MainTimer")
@@ -31,7 +33,10 @@ var count_menu_index: int = 0
 
 func _ready():
 	# Refactor: new code
-	var err = Utils.connect_signal(ui, "pulse_all_pressed", self)
+	var err
+	err = Utils.connect_signal(ui, "pulse_all_pressed", self)
+	print(err)
+	err = Utils.connect_signal(ui, "lane_score_updated", self)
 	print(err)
 	c = count.get_children()
 	a = audio.get_children()
@@ -135,4 +140,6 @@ func _on_IsAuto_toggled(button_pressed:bool):
 
 func _on_main_timer_timeout():
 	if is_auto.pressed:
+		play_beat()
+	elif is_auto_pulse_all.pressed:
 		play_beat()

@@ -1,6 +1,7 @@
 extends Control
 
 signal lane_score_pressed(lane_score)
+signal lane_score_updated(lane_score)
 signal sample_selected(sample_cost)
 signal beat_added(beat_cost)
 signal track_added(track_cost)

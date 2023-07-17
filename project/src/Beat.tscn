@@ -6,7 +6,6 @@
 margin_right = 1024.0
 margin_bottom = 20.0
 focus_mode = 2
-button_mask = 2
 text = "Beat"
 flat = false
 script = ExtResource( 1 )

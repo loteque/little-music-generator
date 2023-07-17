@@ -48,9 +48,17 @@ config/name="music-inc"
 run/main_scene="res://src/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Utils="*res://src/Utils.gd"
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/godot_sfxr/plugin.cfg", "res://addons/gut/plugin.cfg" )
+
+[gui]
+
+timers/tooltip_delay_sec=0.2
 
 [physics]
 

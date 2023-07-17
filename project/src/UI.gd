@@ -1,11 +1,13 @@
 extends Control
 
 signal lane_score_pressed(lane_score)
+signal lane_score_updated(lane_score)
 signal sample_selected(sample_cost)
 signal beat_added(beat_cost)
 signal track_added(track_cost)
 signal auto_pulse_all_added(auto_pulse_all_cost)
 signal auto_pulse_added(auto_pulse_cost)
+signal pulse_all_pressed
 
 export (NodePath) var score_node
 

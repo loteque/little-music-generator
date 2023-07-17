@@ -16,6 +16,7 @@ onready var audio: Node = get_node("/root/Main/Audio")
 onready var lane_manager: Node = get_node("/root/Main/UI/Tracker/LaneManager")
 onready var ui: Node = get_node("/root/Main/UI")
 onready var score: Node = get_node("/root/Main/UI/ScoreContainer/Score")
+onready var board: Node = get_node("../Board")
 
 var beat_scene = preload("res://src/Beat.tscn")
 var sample_data = preload("res://src/SampleData.tscn")
@@ -28,13 +29,30 @@ var a
 var b
 
 var count_menu_index: int = 0
+var is_auto_pulse_all: bool = false
 
 func _ready():
+	# Refactor: new code
+	var err
+	err = Utils.connect_signal(ui, "pulse_all_pressed", self)
+	print(err)
+	err = Utils.connect_signal(ui, "lane_score_updated", self)
+	print(err)
+	err = Utils.connect_signal(ui, "auto_pulse_all_added", self)
+	print(err)
+	err = Utils.connect_signal(main_timer, "timeout", self)
+	print(err)
+	set_auto_pulse_all()
+	#
 	c = count.get_children()
 	a = audio.get_children()
 	b = get_children()
-	main_timer.connect("timeout", self, "_on_main_timer_timeout")
 	populate_beats(beat_scene, count, number_of_beats)
+
+func set_auto_pulse_all():
+	if board:
+		if board.is_auto_pulse_all:
+			is_auto_pulse_all = true
 
 func get_beat_audio(beat_index):
 	c = count.get_children()
@@ -111,8 +129,8 @@ func _on_Pulse_pressed():
 	update_lane_score(beat_data.sample_value)
 	count_menu_index = update_index_by_1(count_menu_index)
 
-func _on_pulse_all_pressed():
-	pulse_button.emit_signal("pressed")
+func _on_UI_pulse_all_pressed():
+	play_beat()
 
 func _on_AddBeat_pressed():
 	number_of_beats += 1
@@ -130,6 +148,11 @@ func _on_IsAuto_toggled(button_pressed:bool):
 	else:
 		emit_signal("auto_pulse_removed")
 
-func _on_main_timer_timeout():
+func _on_UI_auto_pulse_all_added(cost):
+	is_auto_pulse_all = true
+
+func _on_MainTimer_timeout():
 	if is_auto.pressed:
+		play_beat()
+	if is_auto_pulse_all:
 		play_beat()

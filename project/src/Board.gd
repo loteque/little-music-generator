@@ -47,7 +47,6 @@ func _ready():
 	c = count.get_children()
 	a = audio.get_children()
 	b = get_children()
-	#main_timer.connect("timeout", self, "_on_main_timer_timeout")
 	populate_beats(beat_scene, count, number_of_beats)
 
 func set_auto_pulse_all():

@@ -21,7 +21,7 @@
    
     |done|prio|ln|context|description|
     |:---:|:---:|:---:|:---|:---|
-    | [ ] | 1 | 36 | `main_timer.connect` | use the utils connect_signal function. If the utils function still needs to be constructed see LaneManager.gd, 30, 41: `func connect_signal`, `func connect_board_signals`|
+    | [x] | 1 | 36 | `main_timer.connect` | use the utils connect_signal function. If the utils function still needs to be constructed see LaneManager.gd, 30, 41: `func connect_signal`, `func connect_board_signals`|
     | [ ] | 0 | 105 | `f _on_Pulse_pressed` | this should be in a script 'Pulse.gd' attached to 'Board/PulseContainer/Pulse' |
     | [ ] | 0 | 39 | `f get_beat_audio` | this should be in a script 'Pulse.gd' attached to 'Board/PulseContainer/Pulse' |
     | [ ] | 0 | 44 | `f get_beat_data` | this should be in a script 'Pulse.gd' attached to 'Board/PulseContainer/Pulse' |

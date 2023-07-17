@@ -40,12 +40,14 @@ func _ready():
 	print(err)
 	err = Utils.connect_signal(ui, "auto_pulse_all_added", self)
 	print(err)
+	err = Utils.connect_signal(main_timer, "timeout", self)
+	print(err)
 	set_auto_pulse_all()
 	#
 	c = count.get_children()
 	a = audio.get_children()
 	b = get_children()
-	main_timer.connect("timeout", self, "_on_main_timer_timeout")
+	#main_timer.connect("timeout", self, "_on_main_timer_timeout")
 	populate_beats(beat_scene, count, number_of_beats)
 
 func set_auto_pulse_all():
@@ -150,7 +152,7 @@ func _on_IsAuto_toggled(button_pressed:bool):
 func _on_UI_auto_pulse_all_added(cost):
 	is_auto_pulse_all = true
 
-func _on_main_timer_timeout():
+func _on_MainTimer_timeout():
 	if is_auto.pressed:
 		play_beat()
 	if is_auto_pulse_all:
